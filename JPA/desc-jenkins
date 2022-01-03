@@ -1,0 +1,18 @@
+pipeline {
+    agent any
+
+    stages {
+        stage ('clone') {
+            steps {
+              git branch: 'main', url: 'https://github.com/Prateek447/JPA.git'
+            }
+        }
+        stage ('Build') {
+            steps {
+               withMaven(jdk: 'JAVA_HOME', maven: 'maven') {
+              sh 'mvn  install'
+}
+            }
+        }
+    }
+}
